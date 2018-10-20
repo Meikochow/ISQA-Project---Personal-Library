@@ -1,0 +1,63 @@
+.border {
+  border-style: inset;
+  border-width: 1px;
+  margin: 10px;
+}
+
+#sampleui {
+/*   max-width: 450px; */
+  border:1px solid black;
+  width:auto;
+  margin:auto;
+  height: auto;
+
+}
+#newBookForm{
+/* border:2px solid green;  */
+display:flex;
+flex-direction:row;
+}
+#bookTitleToAdd{
+width:70%;
+/* border:1px solid black; */
+height:40px;
+text-align:center;
+}
+#newBook{
+width:30%;
+/* border:1px solid black; */
+height:40px;
+margin-top:0px;
+}
+.bookitem{
+ border:3px double;
+ margin:5px;
+ text-align:center;
+ height:auto;
+ min-height:20px;
+word-wrap:break-word;
+}
+.bookitem:hover{
+cursor:pointer;
+}
+#sampleposting {
+  max-width: 450px;
+  text-align: center;
+  margin-left: 5%;
+}
+
+#userstories {
+  margin-left: 5%;
+}
+
+form {
+  padding: 5px;
+}
+#deleteAllBooks{
+border:none;
+background:#ff3333;
+font-weight:bold;
+font-size:20px;
+height:50px;
+margin:3px;
+}
