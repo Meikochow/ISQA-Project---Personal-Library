@@ -13,6 +13,6 @@ All data is post/get/delete using the MongoDB database;
 7) I can send a delete request to /api/books to delete all books in the database. Returned will be 'complete delete successful' if successful.
 
 ****
-Project Link: https://meadow-swordfish.glitch.me/`
+Project Link: https://meadow-swordfish.glitch.me/
 
 
