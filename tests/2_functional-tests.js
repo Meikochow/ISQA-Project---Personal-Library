@@ -44,12 +44,12 @@ suite('Functional Tests', function() {
         chai.request(server)
         .post('/api/books')
         .send({
-        title:'Men without women'
+        title:'Evangelion'
         })
         .end(function(err, res){
         assert.equal(res.status, 200);
         assert.property(res.body,'title');
-        assert.equal(res.body.title,'Men without women');
+        assert.equal(res.body.title,'Evangelion');
         assert.property(res.body,'_id');
         id1=res.body._id; 
         done();
@@ -129,14 +129,14 @@ suite('Functional Tests', function() {
       test('Test POST /api/books/[id] with comment', function(done){
           chai.request(server)
           .post('/api/books/'+id1)
-          .send({comment:"Great Book"})
+          .send({comment:"Great Manga"})
           .end(function(err, res){
           assert.equal(res.status,200);
           assert.property(res.body,'_id','must conatin the property id');
           assert.property(res.body,'comments','must contain the property comments');
           assert.property(res.body,'commentcount','must contain the property commentcount');
           assert.isArray(res.body.comments,'the comments property must be of Array type');
-          assert.include(res.body.comments,"Great Book",'the comments array must include the -Great Book- comment');
+          assert.include(res.body.comments,"Great Manga",'the comments array must include the -Great Book- comment');
           done();
           })
       });

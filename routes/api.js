@@ -26,6 +26,7 @@ module.exports = function (app) {
     MongoClient.connect(MONGODB_CONNECTION_STRING, function(err, db){
     let collection = db.collection("library");
     collection.find({title:String,_id:String,commentcount:Number}).toArray(function(err,docs){res.json(docs)})
+
     })
     })
     
@@ -94,7 +95,9 @@ module.exports = function (app) {
     
     .post(function(req, res){
       var bookid = req.params.id;
+     let formToLookUp = `form${bookid}`;
       var comment = req.body.comment;
+    if(comment){
       //json res format same as .get
         MongoClient.connect(MONGODB_CONNECTION_STRING,(err, db)=>{
     if(err){res.send(`Error ${err}`);}
@@ -109,22 +112,32 @@ module.exports = function (app) {
       });
       };
     });
+    }
+    else{
+    res.send('no input')
+    }
     })
     
     .delete(function(req, res){
       var bookid = req.params.id;
       //if successful response will be 'delete successful'
-    
+    console.log(`Book id to be found and removed: ${bookid}`);
     MongoClient.connect(MONGODB_CONNECTION_STRING,(err,db)=>{
     if(err){res.send(`Error ${err}`);}
       else{
       let collection = db.collection("library");
-      collection.findAndRemove(bookid,(err,doc)=>{
-      if(err){res.send(`Error ${err}`);}
+        //here we will check if we find a book by the provided Id
+      collection.findOne({_id:bookid},(err,doc)=>{
+      if(err){res.send(`Error ${err}`)}
         else{
-        res.send('delete successful');
+          if(doc!==null){
+        // console.log('book FOUND',doc);
+        collection.remove({_id:doc._id},(err,docs)=>{
+        res.send('delete successful')
+        })
+          }else{console.log('book NOT Found');}
         }
-      })
+      });
       }
     })
     });
